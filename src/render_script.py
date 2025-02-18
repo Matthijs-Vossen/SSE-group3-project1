@@ -2,7 +2,6 @@ import bpy
 import sys
 import time
 
-
 def parse_args():
     """
     Parse command-line arguments passed after the '--' separator.
@@ -26,35 +25,42 @@ def parse_args():
             args["render_mode"] = arg.split("=", 1)[1].strip().lower()
     return args
 
-
 def configure_render_device(render_mode: str) -> None:
     """
     Configure the Cycles render device based on the specified render mode.
-    
-    For GPU mode on an M1 Mac, this script attempts to use Metal.
-    
+
     Args:
         render_mode (str): Either 'cpu' or 'gpu'.
     """
     scene = bpy.context.scene
 
     if render_mode == "gpu":
-        print("Configuring render settings for GPU (Metal)...")
+        print("Configuring render settings for GPU...")
+
         scene.cycles.device = 'GPU'
+
         try:
             prefs = bpy.context.preferences
             cprefs = prefs.addons["cycles"].preferences
-            cprefs.compute_device_type = "METAL"  # Use Metal for Apple M1
-            # Enable all available devices.
+
+            # Set the device type to GPU if available (CUDA/Optix for NVIDIA, OpenCL for AMD)
+            if cprefs.compute_device_type == 'CUDA':
+                cprefs.compute_device_type = 'CUDA'  # Use CUDA for NVIDIA GPUs
+            elif cprefs.compute_device_type == 'OPENCL':
+                cprefs.compute_device_type = 'OPENCL'  # Use OpenCL for AMD GPUs
+            else:
+                print("No valid GPU compute device found.")
+                return
+
+            # Enable all available devices (either CUDA or OpenCL)
             for device in cprefs.devices:
                 device.use = True
-            print("GPU devices enabled (Metal).")
+            print("GPU devices enabled.")
         except Exception as e:
             print(f"Error configuring GPU devices: {e}")
     else:
         print("Configuring render settings for CPU...")
         scene.cycles.device = 'CPU'
-
 
 def main():
     """
@@ -72,15 +78,15 @@ def main():
 
     # Optionally adjust additional render settings here:
     # e.g., output file paths, resolution, samples, etc.
-    # bpy.context.scene.render.filepath = "//render_output.png"
+    bpy.context.scene.render.filepath = r"C:/Users/Scott/Documents/SSE-group3-project1/results/render_output.png"
 
     print("Starting render...")
     bpy.ops.render.render(write_still=False)
     print("Render completed.")
 
-    bpy.ops.wm.quit_blender()
+    # Ensure Blender exits properly on Windows
     time.sleep(2)
-
+    bpy.ops.wm.quit_blender()
 
 if __name__ == "__main__":
     main()

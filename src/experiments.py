@@ -14,12 +14,12 @@ logging.basicConfig(
 )
 
 # Constants and Configuration
-BLENDER_EXECUTABLE = "/Applications/Blender.app/Contents/MacOS/Blender"  # Adjust as needed.
-BLEND_FILE = "../data/temple.blend"  # Replace with your actual .blend file.
-RENDER_SCRIPT = "render_script.py"  # Replace with your custom Blender Python script.
-ENERGIBRIDGE_PATH = "/Users/matthijsvossen/Documents/University/Delft/Year 2/Q3/Sustainable Software Engineering/Project 1/src/energibridge"  # Adjust as needed.
-CSV_FILE_LOCATION = "../results/experiment_results.csv"
-OUTPUT_DIR = "../results/energibridge-outputs"
+BLENDER_EXECUTABLE = r"C:/Program Files/Blender Foundation/Blender 4.1/blender.exe"  # Use raw string
+BLEND_FILE = r"C:/Users/Scott/Documents/SSE-group3-project1/data/temple.blend"  # Adjusted for Windows path format
+RENDER_SCRIPT = r"render_script.py"  # Custom Blender Python script
+ENERGIBRIDGE_PATH = r"C:/Users/Scott/Documents/SSE-group3-project1/src/energibridge.exe"  # Ensure .exe
+CSV_FILE_LOCATION = r"C:/Users/Scott/Documents/SSE-group3-project1/results/experiment_results.csv"
+OUTPUT_DIR = r"C:/Users/Scott/Documents/SSE-group3-project1/results/energibridge-outputs"
 PAUSE_BETWEEN_RUNS = 20  # seconds
 MEASUREMENT_INTERVAL = "500"  # in milliseconds
 
@@ -40,42 +40,31 @@ def log_experiment_result(run_type: str, run_number: int, energy: float, duratio
         writer.writerow([run_type, run_number, energy, duration])
 
 def run_experiment(run_type: str, run_number: int):
-    """
-    Runs a single experiment by launching the energy measurement tool,
-    which in turn launches Blender.
+    measurement_output = os.path.join(OUTPUT_DIR, f"power_measure_{run_type}_run{run_number}.csv").replace("\\", "/")
 
-    Parameters:
-        run_type (str): Either 'cpu' or 'gpu'.
-        run_number (int): The current run number.
-    """
-    # Build the output path for the measurement log.
-    measurement_output = os.path.join(OUTPUT_DIR, f"power_measure_{run_type}_run{run_number}.csv")
-    
-    # Construct the Blender command.
-    blender_cmd = [
-        BLENDER_EXECUTABLE,
-        "--background",  # Run Blender in background mode.
-        BLEND_FILE,
-        "--python", RENDER_SCRIPT,
-        "--",  # Subsequent args are for the Blender Python script.
-        f"--render_mode={run_type}"
-    ]
-    
-    # Build the energibridge command.
     measurement_cmd = [
         ENERGIBRIDGE_PATH,
         "--output", measurement_output,
         "--interval", MEASUREMENT_INTERVAL,
         "--summary"
     ]
+
     if run_type == "gpu":
         measurement_cmd.append("--gpu")
-    
-    # Append the Blender command to the measurement command.
+
+    blender_cmd = [
+        BLENDER_EXECUTABLE,
+        "--background",
+        BLEND_FILE,
+        "--python", RENDER_SCRIPT,
+        "--",
+        f"--render_mode={run_type}"
+    ]
+
     measurement_cmd += blender_cmd
 
     logging.info(f"Starting run {run_number} ({run_type})")
-    
+
     try:
         result = subprocess.run(
             measurement_cmd,
@@ -83,9 +72,11 @@ def run_experiment(run_type: str, run_number: int):
             text=True,
             check=True
         )
+
         output_str = result.stdout
-        logging.info("Energibridge output:\n%s", output_str)
-        
+        #error_str = result.stderr
+        logging.info("Energibridge output:\n%s", output_str)   
+
         match = ENERGY_REGEX.search(output_str)
         if match:
             energy = float(match.group(1))
@@ -96,8 +87,7 @@ def run_experiment(run_type: str, run_number: int):
             )
         else:
             logging.warning(f"Could not parse energy data from run {run_number} ({run_type}).")
-        
-        # Pause to ensure proper measurement cleanup between runs.
+
         time.sleep(PAUSE_BETWEEN_RUNS)
     except subprocess.CalledProcessError as e:
         logging.error(f"Error during run {run_number} ({run_type}): {e}")
