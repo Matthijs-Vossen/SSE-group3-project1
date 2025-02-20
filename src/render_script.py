@@ -33,6 +33,8 @@ def configure_render_device(render_mode: str) -> None:
         render_mode (str): Either 'cpu' or 'gpu'.
     """
     scene = bpy.context.scene
+    scene.render.engine = 'CYCLES'
+    print("scene.render.engine", scene.render.engine)
 
     if render_mode == "gpu":
         print("Configuring render settings for GPU...")
@@ -43,10 +45,16 @@ def configure_render_device(render_mode: str) -> None:
             prefs = bpy.context.preferences
             cprefs = prefs.addons["cycles"].preferences
 
+            print(cprefs.compute_device_type)
             # Set the device type to GPU if available (CUDA/Optix for NVIDIA, OpenCL for AMD)
             if cprefs.compute_device_type == 'CUDA':
+                print("CUDA device found.")
                 cprefs.compute_device_type = 'CUDA'  # Use CUDA for NVIDIA GPUs
+            elif cprefs.compute_device_type == 'OPTIX':
+                print("Optix device found.")
+                cprefs.compute_device_type = 'OPTIX'
             elif cprefs.compute_device_type == 'OPENCL':
+                print("OpenCL device found.")
                 cprefs.compute_device_type = 'OPENCL'  # Use OpenCL for AMD GPUs
             else:
                 print("No valid GPU compute device found.")
@@ -54,13 +62,38 @@ def configure_render_device(render_mode: str) -> None:
 
             # Enable all available devices (either CUDA or OpenCL)
             for device in cprefs.devices:
-                device.use = True
+                if device.type == cprefs.compute_device_type:
+                    device.use = True
+                else:
+                    device.use = False
             print("GPU devices enabled.")
+            print("Available devices:")
+
         except Exception as e:
             print(f"Error configuring GPU devices: {e}")
     else:
         print("Configuring render settings for CPU...")
         scene.cycles.device = 'CPU'
+        print("scene.cycles.device", scene.cycles.device)
+
+        try:
+            prefs = bpy.context.preferences
+            cprefs = prefs.addons["cycles"].preferences
+            cprefs.compute_device_type = 'NONE'
+            print("cprefs compute device", cprefs.compute_device_type)
+            # Disable all GPU devices and set compute device type to NONE
+            for device in cprefs.devices:
+                if device.type in {'CUDA', 'OPTIX', 'OPENCL', 'ONEAPI'}:
+                    device.use = False
+                    print(f"Disabled GPU device: {device.name}")
+            print("GPU devices disabled.")
+        except Exception as e:
+            print(f"Error disabling GPU devices: {e}")
+        # Print the final device settings
+
+    print("Final device settings:")
+    for device in cprefs.devices:
+        print(f" - {device.name} (Type: {device.type}, Use: {device.use})")
 
 def main():
     """
@@ -78,8 +111,9 @@ def main():
 
     # Optionally adjust additional render settings here:
     # e.g., output file paths, resolution, samples, etc.
-    bpy.context.scene.render.filepath = r"C:/Users/Scott/Documents/SSE-group3-project1/results/render_output.png"
+    #bpy.context.scene.render.filepath = r"C:/Users/Scott/Documents/SSE-group3-project1/results/render_output.png"
 
+    # print("scene device: ", bpy.context.scene.device)
     print("Starting render...")
     bpy.ops.render.render(write_still=False)
     print("Render completed.")
