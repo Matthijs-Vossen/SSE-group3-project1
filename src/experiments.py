@@ -15,7 +15,7 @@ logging.basicConfig(
 
 # Constants and Configuration
 BLENDER_EXECUTABLE = r"C:/Program Files/Blender Foundation/Blender 4.3/blender.exe"  # Use raw string
-BLEND_FILE = r"../data/cube.blend"  # Adjusted for Windows path format
+BLEND_FILE = r"../data/donut.blend"  # Adjusted for Windows path format
 RENDER_SCRIPT = r"render_script.py"  # Custom Blender Python script
 ENERGIBRIDGE_PATH = r"C:/Users/melle/PycharmProjects/SSE-group3-project1/src/energibridge.exe"  # Ensure .exe
 CSV_FILE_LOCATION = r"../results/experiment_results_1.csv"
@@ -46,8 +46,7 @@ def run_experiment(run_type: str, run_number: int):
         ENERGIBRIDGE_PATH,
         "--output", measurement_output,
         "--interval", MEASUREMENT_INTERVAL,
-        "--summary",
-        "--gpu"
+        "--summary"
     ]
 
     # if run_type == "gpu":
@@ -75,8 +74,9 @@ def run_experiment(run_type: str, run_number: int):
         )
 
         output_str = result.stdout
-        #error_str = result.stderr
-        logging.info("Energibridge output:\n%s", output_str)   
+        # error_str = result.stderr
+        logging.info("Energibridge output:\n%s", output_str)
+        # logging.error("Energibridge error output:\n%s", error_str)
 
         match = ENERGY_REGEX.search(output_str)
         if match:
@@ -86,13 +86,15 @@ def run_experiment(run_type: str, run_number: int):
             logging.info(
                 f"Run {run_number} ({run_type}): Energy={energy} joules, Duration={duration} sec"
             )
+
         else:
             logging.warning(f"Could not parse energy data from run {run_number} ({run_type}).")
 
         time.sleep(PAUSE_BETWEEN_RUNS)
     except subprocess.CalledProcessError as e:
         logging.error(f"Error during run {run_number} ({run_type}): {e}")
-
+        logging.error(f"Command output: {e.output}")
+        logging.error(f"Command stderr: {e.stderr}")
     logging.info(f"Completed run {run_number} ({run_type})\n{'-'*40}")
 
 def main():

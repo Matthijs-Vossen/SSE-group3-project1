@@ -1,6 +1,7 @@
 import bpy
 import sys
 import time
+import multiprocessing
 
 def parse_args():
     """
@@ -77,6 +78,10 @@ def configure_render_device(render_mode: str) -> None:
         print("scene.cycles.device", scene.cycles.device)
 
         try:
+            total_threads = multiprocessing.cpu_count()
+            scene.render.threads_mode = 'FIXED'
+            scene.render.threads = int(total_threads * 0.9)
+            print(f"Limiting CPU usage to {scene.render.threads} threads out of {total_threads}")
             prefs = bpy.context.preferences
             cprefs = prefs.addons["cycles"].preferences
             cprefs.compute_device_type = 'NONE'
