@@ -27,12 +27,11 @@ To measure the energy consumption of different rendering modes in Blender, we de
 - `python` automation script: A custom script that manages the execution of experiments, collects data, and ensures reproducibility.
 
 For our experiments, we used the following `Blender` scenes:
-- donut.blend?
-- temple.blend?
+- donut.blend (include image)
 
 ### Experiment Design
 We performed rendering tasks under two different conditions:
-- CPU Rendering: Blender renders the scene using only the CPU.
+- CPU Rendering: Blender renders the scene using only the CPU, the CPU is limeted to 90% of its cores due to issues with energibridge.
 - GPU Rendering: Blender renders the scene using the GPU when available.
 
 Each experiment measured:
@@ -55,7 +54,7 @@ The experiment was fully automated using a Python script. The script follows the
    - Log the results in a CSV file.
 
 3. **Pause between runs**:
-   - Introduce a short delay (20 seconds) between experiments to ensure proper measurement cleanup between runs.
+   - Introduce a short delay (one minute) between experiments to ensure proper measurement cleanup between runs.
 
 4. **Repeat for all runs**:
    - Run 30 experiments per mode (CPU and GPU), randomly interleaved.
@@ -65,6 +64,8 @@ The energy measurements and execution times are stored in a CSV file for stastic
 
 ### Hardware setup
 All experiments were conducted on the same machine (hier specificeren hoe en wat).
+|Operating System | CPU | GPU |
+|Windows 10 | Intel Core I7-8750H | Nividia Quadro P1000|
 
 ### Reproducibility
 To facilitate replication of our results, we provide:
@@ -74,5 +75,7 @@ To facilitate replication of our results, we provide:
 ## Results
 
 ## Discussion
+Add context for energy units (example household energy consumption).
 
 ## Limitations & Future Work
+Issue with energibridge overflow when cpu usage goes to 100\%
