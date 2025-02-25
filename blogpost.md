@@ -26,8 +26,8 @@ To measure the energy consumption of different rendering modes in Blender, we de
 - `energibridge`: A power measurement tool that monitors and logs energy consumption.
 - `python` automation script: A custom script that manages the execution of experiments, collects data, and ensures reproducibility.
 
-For our experiments, we used the following `Blender` scenes:
-- donut.blend (include image)
+For our experiments, we used the donut.blend scene. Which can be found [here](https://free3d.com/3d-model/donut-716088.html).
+![An image of what the don.blend looks like](./data/donut.png)
 
 ### Experiment Design
 We performed rendering tasks under two different conditions:
@@ -63,13 +63,18 @@ The experiment was fully automated using a Python script. The script follows the
 The energy measurements and execution times are stored in a CSV file for stastical analysis.
 
 ### Hardware setup
-All experiments were conducted on the same machine (hier specificeren hoe en wat).
-|Operating System | CPU | GPU |
-|Windows 10 | Intel Core I7-8750H | Nividia Quadro P1000|
+To understand the difference between CPU and GPU processing we ran the experiments on 3 different machines. Each machine ran 30 experiments per mode, randomly interleaved. 
+|Operating System | OS Build | CPU | GPU | RAM |
+| ---- | ----- | ----- | ---- | ---- |
+| Windows 10 | `vul build in` | Intel Core I7-8750H | Nividia Quadro P1000 | `vul ram in` |
+| Windows 10 22H2 | 19045.5487 | AMD Ryzen 5 5600X | Nvidia GeForce RTX 3060 | 16 GB |
+| Mac OS | `vuld build in ` | `Vul CPU in` | `Vul GPU in` | `Vul ram in` |
 
 ### Reproducibility
 To facilitate replication of our results, we provide:
-- The Python script used for automation.
+- The Python script used for automation which can be found [here](https://github.com/Matthijs-Vossen/SSE-group3-project1).
+- Python version: 3.9
+- Blender version: 4.3
 - Configuration details of the environment (Blender version, hardware specifications, etc.).
 
 ## Results
