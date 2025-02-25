@@ -57,6 +57,9 @@ def configure_render_device(render_mode: str) -> None:
             elif cprefs.compute_device_type == 'OPENCL':
                 print("OpenCL device found.")
                 cprefs.compute_device_type = 'OPENCL'  # Use OpenCL for AMD GPUs
+            elif cprefs.compute_device_type == 'METAL':
+                print("Metal device found.")
+                cprefs.compute_device_type = 'METAL'
             else:
                 print("No valid GPU compute device found.")
                 return
