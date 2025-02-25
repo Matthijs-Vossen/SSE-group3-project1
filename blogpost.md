@@ -22,7 +22,7 @@ Energy consumption in software systems has become a critical topic as organizati
 
 For freelancers and hobbyists, rendering might happen on a single workstation or laptop. While the scale is smaller, energy usage still directly impacts electricity bills, thermal management, and hardware longevity. In addition, many cloud providers now offer GPU-based rendering services [^2]; understanding the comparative energy draw of CPU vs. GPU modes can inform both pricing models and user choices.
 
-[^2]: https://aws.amazon.com/deadline-cloud/
+[^2]: [AWS Deadline Cloud](https://aws.amazon.com/deadline-cloud/)
 
 Why Blender?
 - Popularity and Accessibility: As an open-source tool with a massive community, Blender is often a go-to for 3D enthusiasts and professionals.
@@ -40,10 +40,10 @@ To measure the energy consumption of different rendering modes in Blender, we de
 - `energibridge`: A power measurement tool that monitors and logs energy consumption.
 - `python` automation script: A custom script that manages the execution of experiments, collects data, and ensures reproducibility.
 
-For our experiments, we used the donut.blend scene [^3].
-![An image of what the don.blend looks like](./data/donut.png)
+For our experiments, we used the Donut.blend scene [^3].
+![An image of what the Donut.blend scene looks like](./data/donut.png)
 
-[^3]: https://free3d.com/3d-model/donut-716088.html
+[^3]: [Link](https://free3d.com/3d-model/donut-716088.html) to Donut.blend file
 
 ### Experiment Design
 We performed rendering tasks under two different conditions:
