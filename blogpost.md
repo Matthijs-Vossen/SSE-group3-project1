@@ -95,14 +95,14 @@ Add context for energy units (example household energy consumption).
 ## Limitations & Future Work
 Issue with energibridge overflow when cpu usage goes to 100\%
 1. Measurement Constraints:
-   - We encountered issues with energibridge overflow when CPU usage goes to 100%. This required limiting CPU usage to 90%, potentially impacting the full “real-world” scenario of 100% CPU load.
-   - Background processes and thermal throttling could skew results slightly, even though we attempted to control these factors by alternating runs and introducing cooldown periods.
-2.	Scene Complexity & Variety:
-   - We tested a single donut scene. Results may differ for more complex scenes with advanced features (e.g., volumetrics, hair particles) or simpler scenes with fewer geometry/texture requirements.
-3.	Hardware Specifics:
+	- We encountered issues with energibridge overflow when CPU usage goes to 100%. This required limiting CPU usage to 90%, potentially impacting the full “real-world” scenario of 100% CPU load.
+	- Background processes and thermal throttling could skew results slightly, even though we attempted to control these factors by alternating runs and introducing cooldown periods.
+2. Scene Complexity & Variety:
+	- We tested a single donut scene. Results may differ for more complex scenes with advanced features (e.g., volumetrics, hair particles) or simpler scenes with fewer geometry/texture requirements.
+3. Hardware Specifics:
 	- Our tests covered a limited range of CPUs and GPUs. Different architectures (AMD GPUs, Intel Arc, etc.) or multi-GPU setups could yield different energy profiles.
 	- Apple Silicon (M1) is unique in its integrated CPU-GPU design, which may not generalize to discrete GPUs.
-4.	Future Directions:
+4. Future Directions:
 	- Multi-GPU Tests: Assess whether multiple GPUs in parallel save more energy per render compared to single GPUs.
 	- Different Render Engines: Compare energy consumption across Blender’s Cycles, Eevee, or other engines like LuxCore or Octane.
 	- Further Automation: Integrate real-time monitoring for thermals, fan speeds, or driver-level power states to provide a more holistic view of performance and efficiency.
