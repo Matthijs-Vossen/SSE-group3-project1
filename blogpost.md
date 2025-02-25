@@ -68,7 +68,7 @@ To understand the difference between CPU and GPU processing we ran the experimen
 | ---- | ----- | ----- | ---- | ---- |
 | Windows 10 | `vul build in` | Intel Core I7-8750H | Nividia Quadro P1000 | `vul ram in` |
 | Windows 10 22H2 | 19045.5487 | AMD Ryzen 5 5600X | Nvidia GeForce RTX 3060 | 16 GB |
-| Mac OS | `vuld build in ` | `Vul CPU in` | `Vul GPU in` | `Vul ram in` |
+| Mac OS | 15.3.1 | M1 chip | M1 chip | 8 GB |
 
 ### Reproducibility
 To facilitate replication of our results, we provide:
