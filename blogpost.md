@@ -5,14 +5,13 @@
 *abstract hier*
 
 ## Introduction
-In the world of digital content creation, rendering is a crucial process that transforms 3D models into high-quality images or animations. This process can be computationally intensive and often requires significant energy consumption.
+In the world of digital content creation, rendering is a vital process that transforms 3D models into high-quality images or animations. This process is often computationally demanding, requiring substantial processing power and energy consumption. Blender, a widely used open-source 3D rendering tool, offers multiple rendering options, including the Cycles engine. Cycles employs path-based ray tracing to produce photorealistic results, making it a preferred choice for artists and studios alike.
 
-Blender, a popular open-source 3D rendering tool, offers multiple rendering modes, mainly utilizing either the CPU or GPU. Each mode has its advantages: CPU rendering is often more accurate but can be slower, while GPU rendering is generally faster but may consume more power. Given the growing emphasis on energy-efficient computing, we want to investigate the differences in energy consumption between these two rendering approaches.
+The cycle engine has two different modes: CPU and GPU rendering. While both modes produce identical visual outputs, GPUs typically outperform CPUs in rendering speed due to their specialized architecture. As a result, CPU rendering is usually only selected when a GPU is unavailable. However, GPUs generally consume more power than CPUs, raising the question of whether their faster performance offsets their higher energy demand. Given the growing emphasis on energy-efficient computing, we want to investigate the differences in energy consumption between these two rendering approaches. In this report we aim to answer the following question: *How does energy consumption differ between CPU and GPU rendering in Blender's Cycles engine?*
 
-Our hypothesis is that GPU rendering, despite its efficiency in speed, may lead to higher energy consumption due to its increased computational power. To test this, we designed an experiment comparing the energy usage of CPU and GPU rendering in Blender. By automating the measurement process and ensuring a structured methodology, we aim to provide insights into the sustainability of rendering workflows.
+To investigate this, we designed an experiment that systematically measures and compares the energy usage of CPU and GPU rendering in Blender. By automating data collection and following a structured methodology, we seek to provide valuable insights into the sustainability of rendering workflows.
 
-In this blog, we will present our experimental setup, analyze our results and provide a discussion about our findings. Finally, we will provide recommendations for others to decrease their energy consumption.
-
+In this blog, we will present our experimental setup, analyze the results and provide a discussion about our findings. Finally, we will offer practical recommendations for optimizing rendering efficiency and reducing energy consumption.
 
 ## Background?
 
@@ -26,8 +25,9 @@ To measure the energy consumption of different rendering modes in Blender, we de
 - `energibridge`: A power measurement tool that monitors and logs energy consumption.
 - `python` automation script: A custom script that manages the execution of experiments, collects data, and ensures reproducibility.
 
-For our experiments, we used the donut.blend scene. Which can be found [here](https://free3d.com/3d-model/donut-716088.html).
-![An image of what the don.blend looks like](./data/donut.png)
+For our experiments, we used the donut.blend scene as shown below. Which can be found [here](https://free3d.com/3d-model/donut-716088.html).
+<img src="./data/donut.png" alt="An image of what the don.blend looks like" width="500"/>
+
 
 ### Experiment Design
 We performed rendering tasks under two different conditions:
@@ -78,6 +78,10 @@ To facilitate replication of our results, we provide:
 - Configuration details of the environment (Blender version, hardware specifications, etc.).
 
 ## Results
+<img src="./results/Violin_plot_Scott.JPG" alt="A violing plot comparing the energy joules by run type" width="500"/>
+
+<img src="./results/Histograms_Scott.JPG" alt="Histograms and Density plots for CPU and GPU energy in joules" width="500"/>
+
 
 ## Discussion
 Add context for energy units (example household energy consumption).
