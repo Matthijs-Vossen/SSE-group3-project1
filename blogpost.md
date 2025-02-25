@@ -11,7 +11,7 @@ The cycle engine has two different modes: CPU and GPU rendering. While both mode
 
 To investigate this, we designed an experiment that systematically measures and compares the energy usage of CPU and GPU rendering in Blender. By automating data collection and following a structured methodology, we seek to provide valuable insights into the sustainability of rendering workflows.
 
-In this blog, we will present our experimental setup, analyze the results and provide a discussion about our findings. Finally, we will offer practical recommendations for optimizing rendering efficiency and reducing energy consumption.
+In this blog, we will present our experimental setup, analyze the results and provide a discussion about our findings. Beyon raw numbers, we'll also explore why why these results matter-shedding light on who is most affected and how small differences in energy consumption can translate into large impacts at scale. Finally, we will offer practical recommendations for optimizing rendering efficiency and reducing energy consumption.
 
 ## Background?
 
