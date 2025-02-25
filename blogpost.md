@@ -38,8 +38,10 @@ To measure the energy consumption of different rendering modes in Blender, we de
 - `energibridge`: A power measurement tool that monitors and logs energy consumption.
 - `python` automation script: A custom script that manages the execution of experiments, collects data, and ensures reproducibility.
 
-For our experiments, we used the donut.blend scene. Which can be found [here](https://free3d.com/3d-model/donut-716088.html).
+For our experiments, we used the donut.blend scene [^2].
 ![An image of what the don.blend looks like](./data/donut.png)
+
+[^2]: https://free3d.com/3d-model/donut-716088.html
 
 ### Experiment Design
 We performed rendering tasks under two different conditions:
