@@ -20,7 +20,7 @@ Energy consumption in software systems has become a critical topic as organizati
 
 [^1]: Patoli, Muhammad Zeeshan, et al. "An open source grid based render farm for blender 3d." 2009 IEEE/PES Power Systems Conference and Exposition. IEEE, 2009.
 
-For freelancers and hobbyists, rendering might happen on a single workstation or laptop. While the scale is smaller, energy usage still directly impacts electricity bills, thermal management, and hardware longevity. In addition, many cloud providers now offer GPU-based rendering services [^2]; understanding the comparative energy draw of CPU vs. GPU modes can inform both pricing models and user choices.
+For freelancers and hobbyists, rendering might happen on a single workstation or laptop. While the scale is smaller, energy usage still directly impacts electricity bills, thermal management, and hardware longevity. In addition, many cloud providers now offer GPU-based rendering services (e.g., AWS Deadline Cloud) [^2]; understanding the comparative energy draw of CPU vs. GPU modes can inform both pricing models and user choices.
 
 [^2]: [AWS Deadline Cloud](https://aws.amazon.com/deadline-cloud/)
 
