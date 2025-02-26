@@ -322,6 +322,15 @@ Discuss affects of joules/time, interresting that cpu not only takes longer but 
 Add context for energy units (example household energy consumption).
 Economic impact of energy consumption vs acquisition costs of hardware.
 
+1 joule = €0.0000000639 EUR (DOUBLE CHECK THIS)
+
+median cpu cost experiment 1: 5106.52 * €0.0000000639  = 0.000326306628 €
+median gpu cost experiment 2: 951.91 * €0.0000000639 = 6.0827049 × 10-5 €
+
+How many times can you render the donut scene with the energy used in one experiment to cover cost of gpu?
+
+carbon impact of rendering with cpu vs gpu?
+
 ## Limitations & Future Work
 1. Measurement Constraints:
 	- We encountered issues with energibridge overflow when CPU usage goes to 100%. This required limiting CPU usage to 90%, potentially impacting the full “real-world” scenario of 100% CPU load.
