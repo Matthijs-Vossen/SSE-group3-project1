@@ -39,8 +39,8 @@ To measure the energy consumption of different rendering modes in Blender, we de
 - `energibridge`: A power measurement tool that monitors and logs energy consumption.
 - `python` automation script: A custom script that manages the execution of experiments, collects data, and ensures reproducibility.
 
-For our experiments, we used the Donut.blend scene [^3].
-![An image of what the Donut.blend scene looks like](./data/donut.png)
+For our experiments, we used a Donut.blend scene [^3].
+<img src="./images/donut.png" alt="Donut Scene" width="200"/>
 
 [^3]: [Link](https://free3d.com/3d-model/donut-716088.html) to Donut.blend file
 
@@ -81,7 +81,7 @@ The energy measurements and execution times are stored in a CSV file for stastic
 To understand the difference between CPU and GPU processing we ran the experiments on 3 different machines. Each machine ran 30 experiments per mode, randomly interleaved. 
 |Operating System | OS Build | CPU | GPU | RAM |
 | ---- | ----- | ----- | ---- | ---- |
-| Windows 10 | `vul build in` | Intel Core I7-8750H | Nividia Quadro P1000 | `vul ram in` |
+| Windows 10 | 19045.5487 | Intel Core I7-8750H | Nividia Quadro P1000 | 16 GB |
 | Windows 10 22H2 | 19045.5487 | AMD Ryzen 5 5600X | Nvidia GeForce RTX 3060 | 16 GB |
 | Mac OS | 15.3.1 | M1 chip | M1 chip | 8 GB |
 
@@ -128,9 +128,9 @@ From the distributions of our results for both the GPU and CPU runs, we can see 
 
 To analyze our results further we used the following statistical tests:
 - Shapiro-Wilk test: Checks if a dataset is normally distributed
-    - W-statistic: Measures how well the data fits a normal distribution. A value closeto 1 means normal
+    - W-statistic: Measures how well the data fits a normal distribution. A value close to 1 means the data has a normal distribution.
     - p-value: If p-value < 0.05, the data is not normal
-- Welch's t-test: Compares the means of two groups with unequal variances
+- Welch's t-test: Compares the means of two groups with unequal variances ALLEEN ALS DATA NORMAL DISTRIBUTION HEEFT
     - t-statistic: Measures the difference between group means. Larger values suggest a bigger difference
     - p-value: If p-value < 0.05, there’s a significant difference between groups
     - Cohen's d: Measures the size of the difference between groups (small, medium, large)
@@ -166,7 +166,7 @@ Both CPU and GPU data are not normally distributed based on the Shapiro-Wilk tes
 
 Even after removing outliers, both datasets still do not follow a normal distribution (p-values still very small).
 
-#### **Welch’s t-test**
+#### **Welch’s t-test** NIET APPLICABLE
 
 | Statistic    | Value           |
 |--------------|-----------------|
@@ -223,7 +223,7 @@ The Mann-Whitney U test supports the Welch’s t-test results with a very small 
 
 The data remains not normally distributed even after outlier removal.
 
-#### Welch’s t-test
+#### Welch’s t-test NIET APPLICABLE
 
 | Statistic    | Value           |
 |--------------|-----------------|
@@ -280,7 +280,7 @@ The Mann-Whitney U test again supports the Welch’s t-test results with a signi
 
 After removing outliers, CPU data is still normally distributed, while GPU data remains not normally distributed.
 
-#### Welch’s t-test
+#### Welch’s t-test NIET APPLICABLE
 
 | Statistic    | Value           |
 |--------------|-----------------|
@@ -315,13 +315,14 @@ Similar to the previous experiments, the Mann-Whitney U test shows a strong diff
 When just looking at the mean energy usages for each experiment, we can see the CPU using 432.84% more joules than when using the GPU. For experiment 2, this percentage goes to 884.33%. Experiment 3 has the lowest difference, with a percentage difference of 277.88%. 
 
 HIER NOG MEER
+Discuss affects of joules/time, interresting that cpu not only takes longer but also has a higher wattage?
 
 
 ## Discussion
 Add context for energy units (example household energy consumption).
+Economic impact of energy consumption vs acquisition costs of hardware.
 
 ## Limitations & Future Work
-Issue with energibridge overflow when cpu usage goes to 100\%
 1. Measurement Constraints:
 	- We encountered issues with energibridge overflow when CPU usage goes to 100%. This required limiting CPU usage to 90%, potentially impacting the full “real-world” scenario of 100% CPU load.
 	- Background processes and thermal throttling could skew results slightly, even though we attempted to control these factors by alternating runs and introducing cooldown periods.
