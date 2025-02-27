@@ -22,15 +22,11 @@ To investigate this, we designed an experiment that systematically measures and 
 
 In this blog, we will present our experimental setup, analyze the results and provide a discussion about our findings. Beyon raw numbers, we'll also explore why why these results matter-shedding light on who is most affected and how small differences in energy consumption can translate into large impacts at scale. Finally, we will offer practical recommendations for optimizing rendering efficiency and reducing energy consumption.
 
-## Background?
+## Background
 
 Energy consumption in software systems has become a critical topic as organizations and individuals become more environmentally conscious. Large production studios, for instance, often maintain render farms running 24/7 to meet project deadlines[^1]. Even a slight improvement in energy efficiency can translate into substantial cost savings and a reduced carbon footprint over thousands of render jobs.
 
-[^1]: Patoli, Muhammad Zeeshan, et al. "An open source grid based render farm for blender 3d." 2009 IEEE/PES Power Systems Conference and Exposition. IEEE, 2009.
-
 For freelancers and hobbyists, rendering might happen on a single workstation or laptop. While the scale is smaller, energy usage still directly impacts electricity bills, thermal management, and hardware longevity. In addition, many cloud providers now offer GPU-based rendering services (e.g., AWS Deadline Cloud) [^2]; understanding the comparative energy draw of CPU vs. GPU modes can inform both pricing models and user choices.
-
-[^2]: [AWS Deadline Cloud](https://aws.amazon.com/deadline-cloud/)
 
 Why Blender?
 - Popularity and Accessibility: As an open-source tool with a massive community, Blender is often a go-to for 3D enthusiasts and professionals.
@@ -51,7 +47,6 @@ To measure the energy consumption of different rendering modes in Blender, we de
 For our experiments, we used a Donut.blend scene [^3].
 <img src="../img/p1_measuring_software/g3_blender/donut.png" alt="Donut Scene" width="200"/>
 
-[^3]: [Link](https://free3d.com/3d-model/donut-716088.html) to Donut.blend file
 
 ### Experiment Design
 We performed rendering tasks under two different conditions:
@@ -334,23 +329,19 @@ When looking at the energy usage per second we get the following results:
 | 2 | 67.69 | 1.84 | 34.05 | 1.82 |
 | 3 | 20.26 | 0.18 | 11.16 | 1.18 |
 
-We see here that the mean Joules per second of the CPU is 139.68% higher than that of the GPU in experiment one. For experiment 2 and 3 the precantages are 98.80% and 81.54% respectivly.
+We see here that the mean Joules per second of the CPU is 139.68% higher than that of the GPU in experiment one. For experiment 2 and 3 the percentages are 98.80% and 81.54% respectivly.
 
 
 ## Discussion
-Add context for energy units (example household energy consumption).
-Economic impact of energy consumption vs acquisition costs of hardware.
+When analysing the results of our experiments, it becomes clear that the GPU outperforms the CPU significantly on all three machines tested. Not only does the GPU outperform the CPU in energy performance, but also render time and power consumption
 
-1 joule = €0.0000000639 EUR (DOUBLE CHECK THIS)
+To fully understand the implications of our results, it is important to put them into context. To help put our results into perspective, consider the average EU household in 2022 consumed 1 584 kWH, which can be converted to  5.7024 * 10^9 Joules. [^4] In contrast, the mean amount of energy used from the worst case CPU experiment, experiment 1, was 5108.39 Joules. In that same experiment the GPU consumed significantly less at 957.90 Joules. It is obvious that relative to the yearly energy usage of a single household, a simple render of a single scene does not have a large impact. It is however important to remember that when scaling to thousands of renders, or when rendering more complicated scenes, the choice of using the GPU instead of the CPU becomes ever more important.
 
-median cpu cost experiment 1: 5106.52 * €0.0000000639  = 0.000326306628 €
-median gpu cost experiment 2: 951.91 * €0.0000000639 = 6.0827049 × 10-5 €
+Our experiments highlight that rendering using the GPU is significantly more energy-efficient, therefore more cost-effective and environmentally friendly compared to CPU rendering. While the upfront investment in a GPU might be high, the long-term savings in power consumption and rendering time could make it a sustainable option, particularly for large scale production environments where marginal gains are crucial.
 
-How many times can you render the donut scene with the energy used in one experiment to cover cost of gpu?
-
-carbon impact of rendering with cpu vs gpu?
 
 ## Limitations & Future Work
+Our study had several limitations that could be addressed in future work, these limitations were as follows:
 1. Measurement Constraints:
 	- We encountered issues with energibridge overflow when CPU usage goes to 100%. This required limiting CPU usage to 90%, potentially impacting the full “real-world” scenario of 100% CPU load.
 	- Background processes and thermal throttling could skew results slightly, even though we attempted to control these factors by alternating runs and introducing cooldown periods.
@@ -363,3 +354,11 @@ carbon impact of rendering with cpu vs gpu?
 	- Multi-GPU Tests: Assess whether multiple GPUs in parallel save more energy per render compared to single GPUs.
 	- Different Render Engines: Compare energy consumption across Blender’s Cycles, Eevee, or other engines like LuxCore or Octane.
 	- Further Automation: Integrate real-time monitoring for thermals, fan speeds, or driver-level power states to provide a more holistic view of performance and efficiency.
+
+[^1]: Patoli, Muhammad Zeeshan, et al. "An open source grid based render farm for blender 3d." 2009 IEEE/PES Power Systems Conference and Exposition. IEEE, 2009.
+
+[^2]: [AWS Deadline Cloud](https://aws.amazon.com/deadline-cloud/)
+
+[^3]: [Link](https://free3d.com/3d-model/donut-716088.html) to Donut.blend file
+
+[^4] "Electricity and Heat statistics," Eurostat, n.d. [Online]. Available: https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Electricity_and_heat_statistics#:~:text=%3A%20Eurostat%20(nrg_bal_c)-,Consumption%20of%20electricity%20per%20capita%20in%20the%20household%20sector,capita%20(1%20584%20kWh).
