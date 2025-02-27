@@ -1,3 +1,12 @@
+---
+author: Matthijs Vossen, Melle Koper, Scott Jochems, Roan Rosema
+title: "Comparing energy consumption between the Cycles rendering engine in Blender"
+image: "../img/p1_measuring_software/gX_template/cover.png"
+date: 27/02/2025
+summary: |-
+  In modern digital content creation pipelines, rendering can be a major bottleneck—not only in terms of time but also energy consumption. As sustainability becomes a priority, understanding the energy footprint of different rendering modes in Blender is essential for individuals, studios, and the broader 3D community. In this study, we compare the energy usage of CPU versus GPU rendering on multiple machines using an automated pipeline. We present our experimental setup, discuss our findings, and propose recommendations for more sustainable rendering practices.
+---
+
 # Comparing energy consumption between rendering modes in Blender
 
 *Matthijs Vossen, Melle Koper, Roan Rosema, Scott Jochems*
