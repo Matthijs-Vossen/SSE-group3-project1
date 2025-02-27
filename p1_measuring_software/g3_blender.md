@@ -316,10 +316,25 @@ Similar to the previous experiments, the Mann-Whitney U test shows a strong diff
 
 ### Key Results:
 
-When just looking at the mean energy usages for each experiment, we can see the CPU using 432.84% more joules than when using the GPU. For experiment 2, this percentage goes to 884.33%. Experiment 3 has the lowest difference, with a percentage difference of 277.88%. 
+When just looking at the mean energy usages for each experiment, we can see the CPU using 432.84% more joules than when using the GPU. For experiment 2, this percentage goes to 884.33%. Experiment 3 has the lowest difference, with a percentage difference of 277.88%.
 
-HIER NOG MEER
-Discuss affects of joules/time, interresting that cpu not only takes longer but also has a higher wattage?
+The mean runtime of each experiment are as follows:
+| Experiment number | Mean runtime in sec (CPU) | Mean runtime in sec (CPU) | 
+| ------| ------ | ------- | 
+| 1 | 106.08 | 47.17 | 
+| 2 | 58.38 | 11.59 | 
+| 3 | 61.57 | 29.92 | 
+
+We see that the mean runtime for the CPU is 124.49% higher than the GPU for experiment 1. In experiment 2 the runtime for the CPU is 403.71% higher than the GPU and in experiment 3 the runtime for the CPU is 105.78% higher than the GPU.
+
+When looking at the energy usage per second we get the following results:
+| Experiment number | Mean Joules/sec (CPU) | Standard Deviation (CPU) | Mean Joules/sec (GPU) | Standard Deviation (GPU) |
+| ------| ------ | ------- | ------- | ------ |
+| 1 | 48.32 | 0.94 | 20.16 | 2.73 |
+| 2 | 67.69 | 1.84 | 34.05 | 1.82 |
+| 3 | 20.26 | 0.18 | 11.16 | 1.18 |
+
+We see here that the mean Joules per second of the CPU is 139.68% higher than that of the GPU in experiment one. For experiment 2 and 3 the precantages are 98.80% and 81.54% respectivly.
 
 
 ## Discussion
