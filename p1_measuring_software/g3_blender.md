@@ -11,7 +11,7 @@ summary: |-
 
 *Matthijs Vossen, Melle Koper, Roan Rosema, Scott Jochems*
 
-In modern digital content creation pipelines, rendering can be a major bottleneck—not only in terms of time but also energy consumption. As sustainability becomes a priority, understanding the energy footprint of different rendering modes in Blender is essential for individuals, studios, and the broader 3D community. In this study, we compare the energy usage of CPU versus GPU rendering on multiple machines using an automated pipeline. We present our experimental setup, discuss our findings, and propose recommendations for more sustainable rendering practices.
+*In modern digital content creation pipelines, rendering can be a major bottleneck—not only in terms of time but also energy consumption. As sustainability becomes a priority, understanding the energy footprint of different rendering modes in Blender is essential for individuals, studios, and the broader 3D community. In this study, we compare the energy usage of CPU versus GPU rendering on multiple machines using an automated pipeline. We present our experimental setup, discuss our findings, and propose recommendations for more sustainable rendering practices.*
 
 ## Introduction
 In the world of digital content creation, rendering is a vital process that transforms 3D models into high-quality images or animations. This process is often computationally demanding, requiring substantial processing power and energy consumption. Blender, a widely used open-source 3D rendering tool, offers multiple rendering options, including the Cycles engine. Cycles employs path-based ray tracing to produce photorealistic results, making it a preferred choice for artists and studios alike.
