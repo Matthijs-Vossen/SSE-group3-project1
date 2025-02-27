@@ -40,7 +40,7 @@ To measure the energy consumption of different rendering modes in Blender, we de
 - `python` automation script: A custom script that manages the execution of experiments, collects data, and ensures reproducibility.
 
 For our experiments, we used a Donut.blend scene [^3].
-<img src="../img/g3_blender/donut.png" alt="Donut Scene" width="200"/>
+<img src="../img/p1_measuring_software/g3_blender/donut.png" alt="Donut Scene" width="200"/>
 
 [^3]: [Link](https://free3d.com/3d-model/donut-716088.html) to Donut.blend file
 
@@ -114,11 +114,11 @@ To analyze our results further we used the following statistical tests:
 
 We have created violin plots for each of the experiments, displaying the power consumption for each run for the three environments.
 <div style="display: flex; justify-content: center; gap: 10px;">
-    <img src="../img/g3_blender/experiment1_power_by_run_type_violinplot.png" alt="Experiment 1" width="45%">
-    <img src="../img/g3_blender/experiment1_energy_by_run_type_violinplot.png" alt="Experiment 1" width="45%">
+    <img src="../img/p1_measuring_software/g3_blender/experiment1_power_by_run_type_violinplot.png" alt="Experiment 1" width="45%">
+    <img src="../img/p1_measuring_software/g3_blender/experiment1_energy_by_run_type_violinplot.png" alt="Experiment 1" width="45%">
 </div>
 <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px">
-    <img src="../img/g3_blender/experiment1_histograms.png" alt="Experiment 1" width="60%">
+    <img src="../img/p1_measuring_software/g3_blender/experiment1_histograms.png" alt="Experiment 1" width="60%">
 </div>
 
 We have also generated histograms to further show the distribution of the power consumption.
@@ -186,11 +186,11 @@ The Mann-Whitney U test supports the Welch’s t-test results with a very small 
 ### Experiment 2
 
 <div style="display: flex; justify-content: center; gap: 10px;">
-    <img src="../img/g3_blender/experiment2_power_by_run_type_violinplot.png" alt="Experiment 2" width="45%">
-    <img src="../img/g3_blender/experiment2_energy_by_run_type_violinplot.png" alt="Experiment 2" width="45%">
+    <img src="../img/p1_measuring_software/g3_blender/experiment2_power_by_run_type_violinplot.png" alt="Experiment 2" width="45%">
+    <img src="../img/p1_measuring_software/g3_blender/experiment2_energy_by_run_type_violinplot.png" alt="Experiment 2" width="45%">
 </div>
 <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px">
-    <img src="../img/g3_blender/experiment2_histograms.png" alt="Experiment 2" width="60%">
+    <img src="../img/p1_measuring_software/g3_blender/experiment2_histograms.png" alt="Experiment 2" width="60%">
 </div>
 
 #### Shapiro-Wilk Test for Normality (Before Outlier Removal)
@@ -254,11 +254,11 @@ The Mann-Whitney U test again supports the Welch’s t-test results with a signi
 ### Experiment 3
 
 <div style="display: flex; justify-content: center; gap: 10px;">
-    <img src="../img/g3_blender/experiment3_power_by_run_type_violinplot.png" alt="Experiment 3" width="45%">
-    <img src="../img/g3_blender/experiment3_energy_by_run_type_violinplot.png" alt="Experiment 3" width="45%">
+    <img src="../img/p1_measuring_software/g3_blender/experiment3_power_by_run_type_violinplot.png" alt="Experiment 3" width="45%">
+    <img src="../img/p1_measuring_software/g3_blender/experiment3_energy_by_run_type_violinplot.png" alt="Experiment 3" width="45%">
 </div>
 <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px">
-    <img src="../img/g3_blender/experiment3_histograms.png" alt="Experiment 3" width="60%">
+    <img src="../img/p1_measuring_software/g3_blender/experiment3_histograms.png" alt="Experiment 3" width="60%">
 </div>
 
 #### Shapiro-Wilk Test for Normality (Before Outlier Removal)
