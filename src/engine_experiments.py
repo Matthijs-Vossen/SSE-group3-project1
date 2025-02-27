@@ -15,11 +15,11 @@ logging.basicConfig(
 
 # Constants and Configuration
 BLENDER_EXECUTABLE = r"C:/Program Files/Blender Foundation/Blender 4.3/blender.exe"  # Use raw string
-BLEND_FILE = r"../data/donut.blend"  # Adjusted for Windows path format
-RENDER_SCRIPT = r"render_script.py"  # Custom Blender Python script
+BLEND_FILE = r"../data/temple.blend"  # Adjusted for Windows path format
+RENDER_SCRIPT = r"engine_render_script.py"  # Custom Blender Python script
 ENERGIBRIDGE_PATH = r"C:/Users/melle/PycharmProjects/SSE-group3-project1/src/energibridge.exe"  # Ensure .exe
-CSV_FILE_LOCATION = r"../results/experiment_results_1.csv"
-OUTPUT_DIR = r"../results/energibridge-outputs"
+CSV_FILE_LOCATION = r"../results/engine/experiment_results.csv"
+OUTPUT_DIR = r"../results/engine/energibridge-outputs"
 PAUSE_BETWEEN_RUNS = 10  # seconds
 MEASUREMENT_INTERVAL = "500"  # in milliseconds
 
@@ -38,9 +38,8 @@ def log_experiment_result(run_type: str, run_number: int, energy: float, duratio
     with open(CSV_FILE_LOCATION, "a", newline="") as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow([run_type, run_number, energy, duration])
-
-def run_experiment(run_type: str, run_number: int):
-    measurement_output = os.path.join(OUTPUT_DIR, f"power_measure_{run_type}_run{run_number}.csv").replace("\\", "/")
+def run_experiment(engine_type: str, run_number: int):
+    measurement_output = os.path.join(OUTPUT_DIR, f"power_measure_{engine_type}_run{run_number}.csv").replace("\\", "/")
 
     measurement_cmd = [
         ENERGIBRIDGE_PATH,
@@ -49,21 +48,18 @@ def run_experiment(run_type: str, run_number: int):
         "--summary"
     ]
 
-    # if run_type == "gpu":
-    #     measurement_cmd.append("-g")
-
     blender_cmd = [
         BLENDER_EXECUTABLE,
         "--background",
         BLEND_FILE,
         "--python", RENDER_SCRIPT,
         "--",
-        f"--render_mode={run_type}"
+        f"--render_engine={engine_type}"
     ]
 
     measurement_cmd += blender_cmd
 
-    logging.info(f"Starting run {run_number} ({run_type})")
+    logging.info(f"Starting run {run_number} ({engine_type})")
 
     try:
         result = subprocess.run(
@@ -74,49 +70,45 @@ def run_experiment(run_type: str, run_number: int):
         )
 
         output_str = result.stdout
-        # error_str = result.stderr
         logging.info("Energibridge output:\n%s", output_str)
-        # logging.error("Energibridge error output:\n%s", error_str)
 
         match = ENERGY_REGEX.search(output_str)
         if match:
             energy = float(match.group(1))
             duration = float(match.group(2))
-            log_experiment_result(run_type, run_number, energy, duration)
+            log_experiment_result(engine_type, run_number, energy, duration)
             logging.info(
-                f"Run {run_number} ({run_type}): Energy={energy} joules, Duration={duration} sec"
+                f"Run {run_number} ({engine_type}): Energy={energy} joules, Duration={duration} sec"
             )
-
         else:
-            logging.warning(f"Could not parse energy data from run {run_number} ({run_type}).")
+            logging.warning(f"Could not parse energy data from run {run_number} ({engine_type}).")
 
         time.sleep(PAUSE_BETWEEN_RUNS)
     except subprocess.CalledProcessError as e:
-        logging.error(f"Error during run {run_number} ({run_type}): {e}")
-        logging.error(f"Command output: {e.output}")
-        logging.error(f"Command stderr: {e.stderr}")
-    logging.info(f"Completed run {run_number} ({run_type})\n{'-'*40}")
+        logging.error(f"Error during run {run_number} ({engine_type}): {e}")
+
+    logging.info(f"Completed run {run_number} ({engine_type})\n{'-'*40}")
 
 def main():
     total_runs_per_mode = 30  # Total runs for each mode.
-    
-    # Build a shuffled list of experiments to interleave CPU and GPU runs.
-    experiments = (
-        [("cpu", i) for i in range(1, total_runs_per_mode + 1)] +
-        [("gpu", i) for i in range(1, total_runs_per_mode + 1)]
-    )
+
+    # Build a shuffled list of experiments to interleave different rendering engines.
+    engines = ["BLENDER_EEVEE_NEXT", "CYCLES", "BLENDER_WORKBENCH"]
+    experiments = [(engine, i) for engine in engines for i in range(1, total_runs_per_mode + 1)]
     random.shuffle(experiments)
-    
+    logging.info(f"Experiments generated")
+
     ensure_directories()
-    
+
     # Write the header to the CSV file.
     with open(CSV_FILE_LOCATION, "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
-        writer.writerow(["run_type", "run_number", "energy_joules", "execution_time_sec"])
-    
+        writer.writerow(["engine_type", "run_number", "energy_joules", "execution_time_sec"])
+
     # Execute each experiment.
-    for run_type, run_number in experiments:
-        run_experiment(run_type, run_number)
+    for engine_type, run_number in experiments:
+        run_experiment(engine_type, run_number)
+
 
 if __name__ == "__main__":
     assert os.path.isfile(BLENDER_EXECUTABLE), f"Blender executable not found: {BLENDER_EXECUTABLE}"
