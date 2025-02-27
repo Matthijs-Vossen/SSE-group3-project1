@@ -97,35 +97,6 @@ To facilitate replication of our results, we provide:
 ## Results
 In our results, we look at all the experiments that were ran on the 3 different machines. The raw CSV files of our results can be found in the Github (LINK HIER). 
 
-We have created violin plots for each of the experiments, displaying the power consumption for each run for the three environments.
-
-<div style="display: flex; justify-content: center; gap: 10px;">
-    <img src="./images/experiment1_power_by_run_type_violinplot.png" alt="Experiment 1" width="45%">
-    <img src="./images/experiment1_energy_by_run_type_violinplot.png" alt="Experiment 2" width="45%">
-</div>
-
-<div style="display: flex; justify-content: center; gap: 10px;">
-    <img src="./images/experiment2_power_by_run_type_violinplot.png" alt="Experiment 1" width="45%">
-    <img src="./images/experiment2_energy_by_run_type_violinplot.png" alt="Experiment 2" width="45%">
-</div>
-
-<div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px">
-    <img src="./images/experiment3_power_by_run_type_violinplot.png" alt="Experiment 1" width="45%">
-    <img src="./images/experiment3_energy_by_run_type_violinplot.png" alt="Experiment 2" width="45%">
-</div>
-
-We have also generated histograms to further show the distribution of the power consumption.
-
-<div style="display: flex; justify-content: center; gap: 10px;">
-    <img src="./images/experiment1_histograms.png" alt="Experiment 1" width="45%">
-    <img src="./images/experiment2_histograms.png" alt="Experiment 1" width="45%">
-</div>
-<div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px">
-    <img src="./images/experiment3_histograms.png" alt="Experiment 1" width="45%">
-</div>
-
-From the distributions of our results for both the GPU and CPU runs, we can see that using a GPU has a significant lower power consumption in comparison to using a CPU.
-
 To analyze our results further we used the following statistical tests:
 - Shapiro-Wilk test: Checks if a dataset is normally distributed
     - W-statistic: Measures how well the data fits a normal distribution. A value close to 1 means the data has a normal distribution.
@@ -140,6 +111,19 @@ To analyze our results further we used the following statistical tests:
     - Effect size: The probability that a value from one group is larger than a value from the other group
 
 ### Statistical analysis - Experiment 1
+
+We have created violin plots for each of the experiments, displaying the power consumption for each run for the three environments.
+<div style="display: flex; justify-content: center; gap: 10px;">
+    <img src="./images/experiment1_power_by_run_type_violinplot.png" alt="Experiment 1" width="45%">
+    <img src="./images/experiment1_energy_by_run_type_violinplot.png" alt="Experiment 1" width="45%">
+</div>
+<div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px">
+    <img src="./images/experiment1_histograms.png" alt="Experiment 1" width="60%">
+</div>
+
+We have also generated histograms to further show the distribution of the power consumption.
+
+From the distributions of our results for both the GPU and CPU runs, we can see that using a GPU has a significant lower power consumption in comparison to using a CPU.
 
 #### Shapiro-Wilk Test for Normality (Before Outlier Removal)
 
@@ -201,6 +185,14 @@ The Mann-Whitney U test supports the Welch’s t-test results with a very small 
 
 ### Experiment 2
 
+<div style="display: flex; justify-content: center; gap: 10px;">
+    <img src="./images/experiment2_power_by_run_type_violinplot.png" alt="Experiment 2" width="45%">
+    <img src="./images/experiment2_energy_by_run_type_violinplot.png" alt="Experiment 2" width="45%">
+</div>
+<div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px">
+    <img src="./images/experiment2_histograms.png" alt="Experiment 2" width="60%">
+</div>
+
 #### Shapiro-Wilk Test for Normality (Before Outlier Removal)
 
 | Dataset | W-statistic | p-value | Normality |
@@ -260,6 +252,14 @@ The Mann-Whitney U test again supports the Welch’s t-test results with a signi
 ---
 
 ### Experiment 3
+
+<div style="display: flex; justify-content: center; gap: 10px;">
+    <img src="./images/experiment3_power_by_run_type_violinplot.png" alt="Experiment 3" width="45%">
+    <img src="./images/experiment3_energy_by_run_type_violinplot.png" alt="Experiment 3" width="45%">
+</div>
+<div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px">
+    <img src="./images/experiment3_histograms.png" alt="Experiment 3" width="60%">
+</div>
 
 #### Shapiro-Wilk Test for Normality (Before Outlier Removal)
 
