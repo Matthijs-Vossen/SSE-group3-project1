@@ -166,6 +166,9 @@ Both CPU and GPU data are not normally distributed based on the Shapiro-Wilk tes
 
 Even after removing outliers, both datasets still do not follow a normal distribution (p-values still very small).
 
+Standard deviation CPU: 25.166859005829743
+Standard deviation GPU: 17.215238806171357
+
 #### **Welch’s t-test** NIET APPLICABLE
 
 | Statistic    | Value           |
@@ -223,6 +226,9 @@ The Mann-Whitney U test supports the Welch’s t-test results with a very small 
 
 The data remains not normally distributed even after outlier removal.
 
+Standard deviation CPU: 171.26024207866303
+Standard deviation GPU: 23.491292465930133
+
 #### Welch’s t-test NIET APPLICABLE
 
 | Statistic    | Value           |
@@ -279,6 +285,9 @@ The Mann-Whitney U test again supports the Welch’s t-test results with a signi
 | GPU     | 0.815307385390901 | 0.00032 | NOT normally distributed |
 
 After removing outliers, CPU data is still normally distributed, while GPU data remains not normally distributed.
+
+Standard deviation CPU: 10.069017954813779
+Standard deviation GPU: 10.290060256698752
 
 #### Welch’s t-test NIET APPLICABLE
 
