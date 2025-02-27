@@ -14,13 +14,13 @@ logging.basicConfig(
 )
 
 # Constants and Configuration
-BLENDER_EXECUTABLE = r"C:/Program Files/Blender Foundation/Blender 4.3/blender.exe"  # Use raw string
-BLEND_FILE = r"../data/donut.blend"  # Adjusted for Windows path format
+BLENDER_EXECUTABLE = r"FILE PATH TO BLENDER EXECUTABLE"  # Use raw string
+BLEND_FILE = r"FILE PATH TO .blend FILE"  # Adjusted for Windows path format
 RENDER_SCRIPT = r"render_script.py"  # Custom Blender Python script
-ENERGIBRIDGE_PATH = r"C:/Users/melle/PycharmProjects/SSE-group3-project1/src/energibridge.exe"  # Ensure .exe
+ENERGIBRIDGE_PATH = r"FILE PATH TO ENERGIBRIDGE.exe"  # Ensure .exe for windows
 CSV_FILE_LOCATION = r"../results/experiment_results_1.csv"
 OUTPUT_DIR = r"../results/energibridge-outputs"
-PAUSE_BETWEEN_RUNS = 10  # seconds
+PAUSE_BETWEEN_RUNS = 60  # seconds
 MEASUREMENT_INTERVAL = "500"  # in milliseconds
 
 # Precompiled regex to parse energy and duration from the tool output.
