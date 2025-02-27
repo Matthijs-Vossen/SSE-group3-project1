@@ -88,11 +88,11 @@ The energy measurements and execution times are stored in a CSV file for stastic
 
 ### Hardware setup
 To understand the difference between CPU and GPU processing we ran the experiments on 3 different machines. Each machine ran 30 experiments per mode, randomly interleaved. 
-|Operating System | OS Build | CPU | GPU | RAM |
-| ---- | ----- | ----- | ---- | ---- |
-| Windows 10 | 19045.5487 | Intel Core I7-8750H | Nividia Quadro P1000 | 16 GB |
-| Windows 10 22H2 | 19045.5487 | AMD Ryzen 5 5600X | Nvidia GeForce RTX 3060 | 16 GB |
-| Mac OS | 15.3.1 | M1 chip | M1 chip | 8 GB |
+|Experiment|Operating System | OS Build | CPU | GPU | RAM |
+| ---- | ---- | ----- | ----- | ---- | ---- |
+| 1 | Windows 10 | 19045.5487 | Intel Core I7-8750H | Nividia Quadro P1000 | 16 GB |
+| 2 | Windows 10 22H2 | 19045.5487 | AMD Ryzen 5 5600X | Nvidia GeForce RTX 3060 | 16 GB |
+| 3 | Mac OS | 15.3.1 | M1 chip | M1 chip | 8 GB |
 
 In our experiments, we will reference to these machines in order of this table (experiment 1 corresponds to the machine of the first row in this table etc.).
 
@@ -104,16 +104,12 @@ To facilitate replication of our results, we provide:
 - Configuration details of the environment (Blender version, hardware specifications, etc.).
 
 ## Results
-In our results, we look at all the experiments that were ran on the 3 different machines. The raw CSV files of our results can be found in the Github (LINK HIER). 
+In our results, we look at all the experiments that were ran on the 3 different machines. We take a look at the mean and standard deviations and compare the results between CPU and GPU runs. The raw CSV files of our results can be found in the Github (LINK HIER). 
 
 To analyze our results further we used the following statistical tests:
 - Shapiro-Wilk test: Checks if a dataset is normally distributed
     - W-statistic: Measures how well the data fits a normal distribution. A value close to 1 means the data has a normal distribution.
     - p-value: If p-value < 0.05, the data is not normal
-- Welch's t-test: Compares the means of two groups with unequal variances ALLEEN ALS DATA NORMAL DISTRIBUTION HEEFT
-    - t-statistic: Measures the difference between group means. Larger values suggest a bigger difference
-    - p-value: If p-value < 0.05, there’s a significant difference between groups
-    - Cohen's d: Measures the size of the difference between groups (small, medium, large)
 - Mann-Whitney U test: Compares the distributions of two independent groups
     - U-statistic: Measures how much one group is greater than the other
     - p-value: If p-value < 0.05, the distributions are significantly different
@@ -159,22 +155,19 @@ Both CPU and GPU data are not normally distributed based on the Shapiro-Wilk tes
 
 Even after removing outliers, both datasets still do not follow a normal distribution (p-values still very small).
 
-Standard deviation CPU: 25.166859005829743
-Standard deviation GPU: 17.215238806171357
-
-#### **Welch’s t-test** NIET APPLICABLE
+#### Mean and Standard Deviation
 
 | Statistic    | Value           |
 |--------------|-----------------|
-| t-statistic  | 657.1854217539285 |
-| p-value      | 4.06e-83        |
 | Mean CPU energy (J)    | 5108.39         |
 | Mean GPU energy (J)    | 957.90          |
 | Mean Difference | -4150.50     |
 | Percent Change | -81.25%       |
-| Cohen's d    | -192.50         |
+| Standard deviation CPU | 25.166859005829743 |
+| Standard deviation GPU | 17.215238806171357 |
 
-The Welch’s t-test shows a significant difference between the CPU and GPU data, with a huge effect size (Cohen's d = -192.50). The difference in means is large (-4150.50), with a percent change of -81.25%, indicating that the power consumption of using a CPU is significantly higher than that of a GPU.
+
+The difference in means is large (-4150.50), with a percent change of -81.25%, indicating that the power consumption of using a CPU is significantly higher than that of a GPU.
 
 #### Mann-Whitney U Test
 
@@ -193,7 +186,7 @@ The Mann-Whitney U test supports the Welch’s t-test results with a very small 
 ---
 
 ### Experiment 2
-
+Below you can find the violin plots and histogram of our second experiment.
 <div style="display: flex; justify-content: center; gap: 10px;">
     <img src="../img/p1_measuring_software/g3_blender/experiment2_power_by_run_type_violinplot.png" alt="Experiment 2" width="45%">
     <img src="../img/p1_measuring_software/g3_blender/experiment2_energy_by_run_type_violinplot.png" alt="Experiment 2" width="45%">
@@ -201,6 +194,7 @@ The Mann-Whitney U test supports the Welch’s t-test results with a very small 
 <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px">
     <img src="../img/p1_measuring_software/g3_blender/experiment2_histograms.png" alt="Experiment 2" width="60%">
 </div>
+Similar to the first experiment, the GPU has a lower power consumption than the CPU.
 
 #### Shapiro-Wilk Test for Normality (Before Outlier Removal)
 
@@ -227,22 +221,18 @@ The Mann-Whitney U test supports the Welch’s t-test results with a very small 
 
 The data remains not normally distributed even after outlier removal.
 
-Standard deviation CPU: 171.26024207866303
-Standard deviation GPU: 23.491292465930133
-
-#### Welch’s t-test NIET APPLICABLE
+#### Mean and Standard Deviation
 
 | Statistic    | Value           |
 |--------------|-----------------|
-| t-statistic  | 104.56388917975023 |
-| p-value      | 1.36e-35        |
 | Mean CPU energy (J)    | 4023.75         |
 | Mean GPU energy (J)    | 408.68          |
 | Mean Difference | -3615.06     |
 | Percent Change | -89.84%       |
-| Cohen's d    | -29.58          |
+| Standard deviation CPU | 171.26024207866303 |
+| Standard deviation GPU | 23.491292465930133 |
 
-The Welch’s t-test shows a significant difference between CPU and GPU means, with a very large effect size (Cohen's d = -29.58). The difference in means is -3615.06, and the percent change is -89.84%, again indicating a large gap between the two datasets.
+The difference in means is -3615.06, and the percent change is -89.84%, again indicating a large gap between the two datasets.
 
 #### Mann-Whitney U Test
 
@@ -262,6 +252,7 @@ The Mann-Whitney U test again supports the Welch’s t-test results with a signi
 
 ### Experiment 3
 
+Below are the violin plots and histogram of our third experiment.
 <div style="display: flex; justify-content: center; gap: 10px;">
     <img src="../img/p1_measuring_software/g3_blender/experiment3_power_by_run_type_violinplot.png" alt="Experiment 3" width="45%">
     <img src="../img/p1_measuring_software/g3_blender/experiment3_energy_by_run_type_violinplot.png" alt="Experiment 3" width="45%">
@@ -295,22 +286,17 @@ The Mann-Whitney U test again supports the Welch’s t-test results with a signi
 
 After removing outliers, CPU data is still normally distributed, while GPU data remains not normally distributed.
 
-Standard deviation CPU: 10.069017954813779
-Standard deviation GPU: 10.290060256698752
-
-#### Welch’s t-test NIET APPLICABLE
+#### Mean and Standard Deviation
 
 | Statistic    | Value           |
 |--------------|-----------------|
-| t-statistic  | 318.37308610701746 |
-| p-value      | 2.55e-84        |
 | Mean CPU energy (J)    | 1248.24         |
 | Mean GPU energy (J)    | 331.52          |
 | Mean Difference | -916.72      |
-| Percent Change | -73.44%       |
-| Cohen's d    | -90.05          |
+| Standard deviation CPU | 10.069017954813779 |
+| Standard deviation GPU | 10.290060256698752 |
 
-The Welch’s t-test indicates a significant difference between the CPU and GPU means, with a very large effect size (Cohen's d = -90.05). The difference in means is -916.72, and the percent change is -73.44%, confirming the data disparity.
+The difference in means is -916.72, and the percent change is -73.44%, confirming the data disparity.
 
 #### Mann-Whitney U Test
 
