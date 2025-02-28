@@ -2,7 +2,7 @@
 author: Matthijs Vossen, Melle Koper, Scott Jochems, Roan Rosema
 title: "Comparing energy consumption between the Cycles rendering engine in Blender"
 image: "../img/p1_measuring_software/gX_template/cover.png"
-date: 27/02/2025
+date: 28/02/2025
 summary: |-
   In modern digital content creation pipelines, rendering can be a major bottleneck—not only in terms of time but also energy consumption. As sustainability becomes a priority, understanding the energy footprint of different rendering modes in Blender is essential for individuals, studios, and the broader 3D community. In this study, we compare the energy usage of CPU versus GPU rendering on multiple machines using an automated pipeline. We present our experimental setup, discuss our findings, and propose recommendations for more sustainable rendering practices.
 ---
@@ -335,7 +335,7 @@ We see here that the mean Joules per second of the CPU is 139.68% higher than th
 ## Discussion
 When analysing the results of our experiments, it becomes clear that the GPU outperforms the CPU significantly on all three machines tested. Not only does the GPU outperform the CPU in energy performance, but also render time and power consumption
 
-To fully understand the implications of our results, it is important to put them into context. To help put our results into perspective, consider the average EU household in 2022 consumed 1 584 kWH, which can be converted to  5.7024 * 10^9 Joules. [^4] In contrast, the mean amount of energy used from the worst case CPU experiment, experiment 1, was 5108.39 Joules. In that same experiment the GPU consumed significantly less at 957.90 Joules. It is obvious that relative to the yearly energy usage of a single household, a simple render of a single scene does not have a large impact. It is however important to remember that when scaling to thousands of renders, or when rendering more complicated scenes, the choice of using the GPU instead of the CPU becomes ever more important.
+To fully understand the implications of our results, it is important to put them into context. To help put our results into perspective, consider the average EU household in 2022 consumed 1 584 kWH, which can be converted to  5.7024 * 10^9 Joules[^4]. In contrast, the mean amount of energy used from the worst case CPU experiment, experiment 1, was 5108.39 Joules. In that same experiment the GPU consumed significantly less at 957.90 Joules. It is obvious that relative to the yearly energy usage of a single household, a simple render of a single scene does not have a large impact. It is however important to remember that when scaling to thousands of renders, or when rendering more complicated scenes, the choice of using the GPU instead of the CPU becomes ever more important.
 
 Our experiments highlight that rendering using the GPU is significantly more energy-efficient, therefore more cost-effective and environmentally friendly compared to CPU rendering. While the upfront investment in a GPU might be high, the long-term savings in power consumption and rendering time could make it a sustainable option, particularly for large scale production environments where marginal gains are crucial.
 
