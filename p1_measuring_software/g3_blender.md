@@ -329,7 +329,7 @@ When looking at the energy usage per second we get the following results:
 | 2 | 67.69 | 1.84 | 34.05 | 1.82 |
 | 3 | 20.26 | 0.18 | 11.16 | 1.18 |
 
-We see here that the mean Joules per second of the CPU is 139.68% higher than that of the GPU in experiment one. For experiment 2 and 3 the percentages are 98.80% and 81.54% respectivly.
+We see here that the mean Joules per second of the CPU is 139.68% higher than that of the GPU in experiment one. For experiment 2 and 3 the percentages are 98.80% and 81.54% respectively.
 
 
 ## Discussion
