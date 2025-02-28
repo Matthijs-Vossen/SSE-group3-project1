@@ -24,7 +24,7 @@ In this blog, we will present our experimental setup, analyze the results and pr
 
 ## Background
 
-Energy consumption in software systems has become a critical topic as organizations and individuals become more environmentally conscious. Large production studios, for instance, often maintain render farms running 24/7 to meet project deadlines[^1]. Even a slight improvement in energy efficiency can translate into substantial cost savings and a reduced carbon footprint over thousands of render jobs.
+Energy consumption in software systems has become a critical topic as organizations and individuals become more environmentally conscious. Large production studios, for instance, often maintain render farms running 24/7 to meet project deadlines [^1]. Even a slight improvement in energy efficiency can translate into substantial cost savings and a reduced carbon footprint over thousands of render jobs.
 
 For freelancers and hobbyists, rendering might happen on a single workstation or laptop. While the scale is smaller, energy usage still directly impacts electricity bills, thermal management, and hardware longevity. In addition, many cloud providers now offer GPU-based rendering services (e.g., AWS Deadline Cloud) [^2]; understanding the comparative energy draw of CPU vs. GPU modes can inform both pricing models and user choices.
 
@@ -335,7 +335,7 @@ We see here that the mean Joules per second of the CPU is 139.68% higher than th
 ## Discussion
 When analysing the results of our experiments, it becomes clear that the GPU outperforms the CPU significantly on all three machines tested. Not only does the GPU outperform the CPU in energy performance, but also render time and power consumption
 
-To fully understand the implications of our results, it is important to put them into context. To help put our results into perspective, consider the average EU household in 2022 consumed 1 584 kWH, which can be converted to  5.7024 * 10^9 Joules[^4]. In contrast, the mean amount of energy used from the worst case CPU experiment, experiment 1, was 5108.39 Joules. In that same experiment the GPU consumed significantly less at 957.90 Joules. It is obvious that relative to the yearly energy usage of a single household, a simple render of a single scene does not have a large impact. It is however important to remember that when scaling to thousands of renders, or when rendering more complicated scenes, the choice of using the GPU instead of the CPU becomes ever more important.
+To fully understand the implications of our results, it is important to put them into context. To help put our results into perspective, consider the average EU household in 2022 consumed 1 584 kWH, which can be converted to  5.7024 * 10^9 Joules [^4]. In contrast, the mean amount of energy used from the worst case CPU experiment, experiment 1, was 5108.39 Joules. In that same experiment the GPU consumed significantly less at 957.90 Joules. It is obvious that relative to the yearly energy usage of a single household, a simple render of a single scene does not have a large impact. It is however important to remember that when scaling to thousands of renders, or when rendering more complicated scenes, the choice of using the GPU instead of the CPU becomes ever more important.
 
 Our experiments highlight that rendering using the GPU is significantly more energy-efficient, therefore more cost-effective and environmentally friendly compared to CPU rendering. While the upfront investment in a GPU might be high, the long-term savings in power consumption and rendering time could make it a sustainable option, particularly for large scale production environments where marginal gains are crucial.
 
@@ -361,4 +361,4 @@ Our study had several limitations that could be addressed in future work, these 
 
 [^3]: [Link](https://free3d.com/3d-model/donut-716088.html) to Donut.blend file
 
-[^4] "Electricity and Heat statistics," Eurostat, n.d. [Online]. Available: https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Electricity_and_heat_statistics#:~:text=%3A%20Eurostat%20(nrg_bal_c)-,Consumption%20of%20electricity%20per%20capita%20in%20the%20household%20sector,capita%20(1%20584%20kWh).
+[^4]: "Electricity and Heat statistics," Eurostat, n.d. [Online]. Available: https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Electricity_and_heat_statistics#:~:text=%3A%20Eurostat%20(nrg_bal_c)-,Consumption%20of%20electricity%20per%20capita%20in%20the%20household%20sector,capita%20(1%20584%20kWh).
